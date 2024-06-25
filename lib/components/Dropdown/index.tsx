@@ -1,28 +1,39 @@
 import React from 'react';
-import { TextField, MenuItem, BaseTextFieldProps } from '@mui/material';
+import { Autocomplete, TextField, AutocompleteProps } from '@mui/material';
 
-interface DropdownProps extends BaseTextFieldProps {
-  label: string;
-  options: string[];
-  onChange:(e:any)=>void;
+interface IDropdownProps extends Partial<AutocompleteProps<any, any, any, any>> {
+  flag?: boolean;
+  errormsg?: string;
+  options: { value: string | number; label: string }[];
+  label?: string;
+  isSelect?: boolean; 
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ label, options, onChange, ...props }) => {
+const Dropdown: React.FC<IDropdownProps> = ({
+  flag = true,
+  errormsg,
+  options,
+  label,
+  isSelect = false,
+  onChange,
+  ...props
+}) => {
   return (
-    <TextField
-      select
-      label={label}
-      variant="outlined"
+    <Autocomplete
+      disabled={!flag}
+      options={options.map(option => option.label)}
       onChange={onChange}
-      fullWidth
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label={label}
+          error={Boolean(errormsg)}
+          helperText={errormsg}
+        />
+      )}
+      disableClearable={isSelect}
       {...props}
-    >
-      {options.map((option) => (
-        <MenuItem key={option} value={option}>
-          {option}
-        </MenuItem>
-      ))}
-    </TextField>
+    />
   );
 };
 

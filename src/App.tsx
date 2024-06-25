@@ -1,19 +1,28 @@
-import { useState } from 'react'
-import { Button, Dropdown } from 'pangea_ui_library'
-import TextField from 'pangea_ui_library/components/TextField';
+import React, { useState } from 'react';
+import { Dropdown, TextField } from 'pangea_ui_library';
 
-function App() {
-  const options = ['Option 1', 'Option 2', 'Option 3'];
-  const [value, setValue] = useState('');
-  const [error, setError] = useState('');
-  const [flag, setFlag] = useState(true); 
+const App: React.FC = () => {
+  const [textFieldValue, setTextFieldValue] = useState('');
+  const [textFieldError, setTextFieldError] = useState('');
+  const [dropdownValue, setDropdownValue] = useState<string | null>(null);
+  const [dropdownError, setDropdownError] = useState('');
+  const [flag, setFlag] = useState(true);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+  const handleTextFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTextFieldValue(event.target.value);
     if (event.target.value === '') {
-      setError('This field is required');
+      setTextFieldError('This field is required');
     } else {
-      setError('');
+      setTextFieldError('');
+    }
+  };
+
+  const handleDropdownChange = (event: any, newValue: string | null) => {
+    setDropdownValue(newValue);
+    if (newValue === null) {
+      setDropdownError('This field is required');
+    } else {
+      setDropdownError('');
     }
   };
 
@@ -21,24 +30,35 @@ function App() {
     setFlag((prevFlag) => !prevFlag);
   };
 
+  const dropdownOptions = [
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+    { value: 'option3', label: 'Option 3' },
+  ];
+
   return (
-    <>
-      <div className=''>
+    <div>
       <TextField
         label="Example Label"
-        value={value}
-        onChange={handleChange}
-        errormsg={error}
-        flag={flag} // Set the flag dynamically
+        value={textFieldValue}
+        onChange={handleTextFieldChange}
+        errormsg={textFieldError}
+        flag={flag}
+      />
+      <Dropdown
+        label="Example Dropdown"
+        value={dropdownValue}
+        onChange={handleDropdownChange}
+        errormsg={dropdownError}
+        flag={flag}
+        options={dropdownOptions}
+        isSelect={true} // Set to true for select-like behavior
       />
       <button onClick={toggleFlag}>
-        {flag ? 'Disable' : 'Enable'} TextField
+        {flag ? 'Disable' : 'Enable'} Inputs
       </button>
-        <Button className='bg-red-700'>Button</Button>
-        <Dropdown label="Example Dropdown" options={options} value={value} onChange={(e) => setValue(e.target.value)} />
-      </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
 export default App;
