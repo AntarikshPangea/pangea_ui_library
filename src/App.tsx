@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, TextField } from 'pangea_ui_library';
+import { Button, Dropdown, PasswordInput, TextField } from 'pangea_ui_library';
 import TextArea from 'pangea_ui_library/components/TextArea';
 import SearchBar from 'pangea_ui_library/components/Search';
 
@@ -11,6 +11,8 @@ const App: React.FC = () => {
   const [textAreaValue, setTextAreaValue] = useState('');
   const [textAreaError, setTextAreaError] = useState('');
   const [searchValue, setSearchValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [flag, setFlag] = useState(true);
 
   const handleTextFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +51,15 @@ const App: React.FC = () => {
     // Add functionality as needed
   };
 
+  const handlePasswordChange = (value: string) => {
+    setPasswordValue(value);
+    if (value === '') {
+      setPasswordError('Password is required');
+    } else {
+      setPasswordError('');
+    }
+  };
+
   const toggleFlag = () => {
     setFlag((prevFlag) => !prevFlag);
   };
@@ -73,6 +84,15 @@ const App: React.FC = () => {
       />
       <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} errormsg={textAreaError} flag={flag} />
       <SearchBar value={searchValue} onChange={handleSearchChange} flag={flag} />
+      <PasswordInput
+        label="Password"
+        value={passwordValue}
+        onChange={handlePasswordChange}
+        error={!!passwordError}
+        helperText={passwordError ? 'Password is required' : ''}
+        variant="outlined"
+        fullWidth
+      />
       <Button variant="contained" color="primary" fullWidth onClick={handleButtonClick} disabled={!flag}>
         Click Me
       </Button>
