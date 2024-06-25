@@ -14,7 +14,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "pangea_ui_library": ["./lib/main.ts"]
+      "pangea_ui_library": ["./lib/main.ts"],
+      "pangea_ui_library/*": ["./lib/*"]
     },
     /* Linting */
     "strict": true,
