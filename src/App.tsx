@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dropdown, TextField } from 'pangea_ui_library';
 import TextArea from 'pangea_ui_library/components/TextArea';
+import SearchBar from 'pangea_ui_library/components/Search';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -9,6 +10,7 @@ const App: React.FC = () => {
   const [dropdownError, setDropdownError] = useState('');
   const [textAreaValue, setTextAreaValue] = useState('');
   const [textAreaError, setTextAreaError] = useState('');
+  const [searchValue, setSearchValue] = useState('');
   const [flag, setFlag] = useState(true);
 
   const handleTextFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,6 +40,10 @@ const App: React.FC = () => {
     }
   };
 
+  const handleSearchChange = (value: string) => {
+    setSearchValue(value);
+  };
+
   const toggleFlag = () => {
     setFlag((prevFlag) => !prevFlag);
   };
@@ -61,6 +67,7 @@ const App: React.FC = () => {
         isSelect={true} // Set to true for select-like behavior
       />
       <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} errormsg={textAreaError} flag={flag} />
+      <SearchBar value={searchValue} onChange={handleSearchChange} flag={flag} />
       <button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</button>
     </div>
   );
