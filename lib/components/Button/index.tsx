@@ -1,13 +1,8 @@
 // create simple mui button
-import Button, { ButtonProps } from '@mui/material/Button';
+import { default as MuiButton, ButtonProps } from '@mui/material/Button';
 
-
-const ColorButton: React.FC<ButtonProps> = (props) => {
-    return (
-        <Button  {...props}>
-            {props.children}
-        </Button>
-    );
+const Button: React.FC<ButtonProps> = (props) => {
+  return <MuiButton {...props}>{props.children}</MuiButton>;
 };
 
-export default ColorButton;
+export default Button;
