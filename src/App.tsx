@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dropdown, TextField } from 'pangea_ui_library';
+import { Button, Dropdown, TextField } from 'pangea_ui_library';
 import TextArea from 'pangea_ui_library/components/TextArea';
 import SearchBar from 'pangea_ui_library/components/Search';
 
@@ -44,6 +44,11 @@ const App: React.FC = () => {
     setSearchValue(value);
   };
 
+  const handleButtonClick = () => {
+    console.log('Button clicked!');
+    // Add functionality as needed
+  };
+
   const toggleFlag = () => {
     setFlag((prevFlag) => !prevFlag);
   };
@@ -68,7 +73,10 @@ const App: React.FC = () => {
       />
       <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} errormsg={textAreaError} flag={flag} />
       <SearchBar value={searchValue} onChange={handleSearchChange} flag={flag} />
-      <button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</button>
+      <Button variant="contained" color="primary" fullWidth onClick={handleButtonClick} disabled={!flag}>
+        Click Me
+      </Button>
+      <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
     </div>
   );
 };
