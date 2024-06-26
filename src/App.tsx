@@ -6,6 +6,7 @@ import OtpAuthPage, { IOtpAuthPageProps } from 'pangea_ui_library/pages/OtpAuthP
 import AuthPage, { IAuthPageProps } from 'pangea_ui_library/pages/AuthPage';
 import SsoAuthPage, { ISsoAuthPageProps } from 'pangea_ui_library/pages/SsoAuthPage';
 import { RadioOption } from 'pangea_ui_library/components/Radio';
+import ErrorPage from 'pangea_ui_library/pages/ErrorPage';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -136,6 +137,11 @@ const App: React.FC = () => {
     { value: 'option3', label: 'Option 3' }
   ];
 
+  const handleRefresh = () => {
+    // Logic to refresh the page or reload data
+    window.location.reload();
+  };
+
   return (
     <div>
       <TextField label="Example Label" value={textFieldValue} onChange={handleTextFieldChange} errormsg={textFieldError} disabled={flag} />
@@ -174,6 +180,7 @@ const App: React.FC = () => {
       <OtpAuthPage {...otpAuthPageProps} />
       <AuthPage {...authPageProps} />
       <SsoAuthPage {...ssoAuthPageProps} />
+      <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
     </div>
   );
