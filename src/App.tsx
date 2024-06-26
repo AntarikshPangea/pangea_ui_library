@@ -7,6 +7,7 @@ import AuthPage, { IAuthPageProps } from 'pangea_ui_library/pages/AuthPage';
 import SsoAuthPage, { ISsoAuthPageProps } from 'pangea_ui_library/pages/SsoAuthPage';
 import { RadioOption } from 'pangea_ui_library/components/Radio';
 import ErrorPage from 'pangea_ui_library/pages/ErrorPage';
+import TabsComponent from 'pangea_ui_library/components/Tabs';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -137,6 +138,12 @@ const App: React.FC = () => {
     { value: 'option3', label: 'Option 3' }
   ];
 
+  const tabs = [
+    { label: 'Tab 1', content: <div>Content for Tab 1</div> },
+    { label: 'Tab 2', content: <div>Content for Tab 2</div> },
+    { label: 'Tab 3', content: <div>Content for Tab 3</div> }
+  ];
+
   const handleRefresh = () => {
     // Logic to refresh the page or reload data
     window.location.reload();
@@ -176,6 +183,10 @@ const App: React.FC = () => {
       <Button variant="contained" color="primary" fullWidth onClick={handleButtonClick} disabled={!flag}>
         Click Me
       </Button>
+      <div className="App">
+        <h1>Tabs Example</h1>
+        <TabsComponent tabs={tabs} variant="fullWidth" centered indicatorColor="primary" textColor="primary" />
+      </div>
       <Radio label="Select an option" options={options} value={selectedOption} onChange={handleOptionChange} RadioProps={{ color: 'primary' }} />
       <OtpAuthPage {...otpAuthPageProps} />
       <AuthPage {...authPageProps} />
