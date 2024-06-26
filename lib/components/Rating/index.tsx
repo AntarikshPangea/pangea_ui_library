@@ -1,7 +1,7 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import { default as MuiRating, RatingProps } from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import * as React from 'react';
 
 export interface IRatingProps extends RatingProps {
   disabled?: boolean;

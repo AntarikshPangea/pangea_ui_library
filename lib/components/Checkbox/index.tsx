@@ -1,6 +1,6 @@
-import FormGroup from '@mui/material/FormGroup';
+import { CheckboxProps, default as MuiCheckBox } from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { default as MuiCheckBox, CheckboxProps } from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
 // extend switch props
 
 export interface ICheckboxProps extends CheckboxProps {

@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Button } from 'pangea_ui_library';
 import { StyledEngineProvider } from '@mui/material';
-import Switch from 'pangea_ui_library/components/Switch';
+import { Button } from 'pangea_ui_library';
 import Checkbox from 'pangea_ui_library/components/Checkbox';
-import Rating from 'pangea_ui_library/components/Rating';
 import Link from 'pangea_ui_library/components/Link';
+import Rating from 'pangea_ui_library/components/Rating';
+import Switch from 'pangea_ui_library/components/Switch';
+import { useState } from 'react';
 
 function App() {
   const [checked, setChecked] = useState(false);

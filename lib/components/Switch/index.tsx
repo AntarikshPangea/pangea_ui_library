@@ -1,5 +1,5 @@
-import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
 import { default as MuiSwitch, SwitchProps } from '@mui/material/Switch';
 
 // extend switch props

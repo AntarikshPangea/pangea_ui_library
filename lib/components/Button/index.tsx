@@ -1,5 +1,5 @@
 // create simple mui button
-import { default as MuiButton, ButtonProps } from '@mui/material/Button';
+import { ButtonProps, default as MuiButton } from '@mui/material/Button';
 
 const Button: React.FC<ButtonProps> = (props) => {
   return <MuiButton {...props}>{props.children}</MuiButton>;
