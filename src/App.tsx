@@ -126,18 +126,18 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <TextField label="Example Label" value={textFieldValue} onChange={handleTextFieldChange} errormsg={textFieldError} flag={flag} />
+      <TextField label="Example Label" value={textFieldValue} onChange={handleTextFieldChange} errormsg={textFieldError} disabled={flag} />
       <Dropdown
         label="Example Dropdown"
         value={dropdownValue}
         onChange={handleDropdownChange}
         errormsg={dropdownError}
-        flag={flag}
+        disabled={flag}
         options={dropdownOptions}
         isSelect={true} // Set to true for select-like behavior
       />
-      <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} errormsg={textAreaError} flag={flag} />
-      <SearchBar value={searchValue} onChange={handleSearchChange} flag={flag} />
+      <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} errormsg={textAreaError} disabled={flag} />
+      <SearchBar value={searchValue} onChange={handleSearchChange} disabled={flag} />
       <PasswordInput
         label="Password"
         value={passwordValue}
