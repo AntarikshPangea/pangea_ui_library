@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, OtpInput, PasswordInput, Radio, TextField } from 'pangea_ui_library';
+import { Button, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField } from 'pangea_ui_library';
 import TextArea from 'pangea_ui_library/components/TextArea';
 import SearchBar from 'pangea_ui_library/components/Search';
 import OtpAuthPage, { IOtpAuthPageProps } from 'pangea_ui_library/pages/OtpAuthPage';
@@ -8,6 +8,7 @@ import SsoAuthPage, { ISsoAuthPageProps } from 'pangea_ui_library/pages/SsoAuthP
 import { RadioOption } from 'pangea_ui_library/components/Radio';
 import ErrorPage from 'pangea_ui_library/pages/ErrorPage';
 import TabsComponent from 'pangea_ui_library/components/Tabs';
+import AvatarComponent from 'pangea_ui_library/components/Avatar';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -151,47 +152,93 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <TextField label="Example Label" value={textFieldValue} onChange={handleTextFieldChange} errormsg={textFieldError} disabled={flag} />
-      <Dropdown
-        label="Example Dropdown"
-        value={dropdownValue}
-        onChange={handleDropdownChange}
-        errormsg={dropdownError}
-        disabled={flag}
-        options={dropdownOptions}
-        isSelect={true} // Set to true for select-like behavior
-      />
-      <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} errormsg={textAreaError} disabled={flag} />
-      <SearchBar value={searchValue} onChange={handleSearchChange} disabled={flag} />
-      <PasswordInput
-        label="Password"
-        value={passwordValue}
-        onChange={handlePasswordChange}
-        error={!!passwordError}
-        helperText={passwordError ? 'Password is required' : ''}
-        variant="outlined"
-        fullWidth
-      />
-      <OtpInput
-        label="OTP"
-        length={6}
-        onChange={handleOtpChange}
-        error={otpError}
-        helperText={otpError ? 'Please enter a valid OTP' : ''}
-        disabled={!flag}
-      />
-      <Button variant="contained" color="primary" fullWidth onClick={handleButtonClick} disabled={!flag}>
-        Click Me
-      </Button>
+      <div className="App">
+        <h1>Textfield example</h1>
+        <TextField label="Example Label" value={textFieldValue} onChange={handleTextFieldChange} errormsg={textFieldError} disabled={flag} />
+      </div>
+      <div className="App">
+        <h1>Dropdown example</h1>
+        <Dropdown
+          label="Example Dropdown"
+          value={dropdownValue}
+          onChange={handleDropdownChange}
+          errormsg={dropdownError}
+          disabled={flag}
+          options={dropdownOptions}
+          isSelect={true} // Set to true for select-like behavior
+        />
+      </div>
+      <div className="App">
+        <h1>Textarea example</h1>
+        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} errormsg={textAreaError} disabled={flag} />
+      </div>
+      <div className="App">
+        <h1>Searchbar example</h1>
+        <SearchBar value={searchValue} onChange={handleSearchChange} disabled={flag} />
+      </div>
+      <div className="App">
+        <h1>Password example</h1>
+        <PasswordInput
+          label="Password"
+          value={passwordValue}
+          onChange={handlePasswordChange}
+          error={!!passwordError}
+          helperText={passwordError ? 'Password is required' : ''}
+          variant="outlined"
+          fullWidth
+        />
+      </div>
+      <div className="App">
+        <h1>Otp example</h1>
+        <OtpInput
+          label="OTP"
+          length={6}
+          onChange={handleOtpChange}
+          error={otpError}
+          helperText={otpError ? 'Please enter a valid OTP' : ''}
+          disabled={!flag}
+        />
+      </div>
+      <div className="App">
+        <h1>Button example</h1>
+        <Button variant="contained" color="primary" fullWidth onClick={handleButtonClick} disabled={!flag}>
+          Click Me
+        </Button>
+      </div>
       <div className="App">
         <h1>Tabs Example</h1>
         <TabsComponent tabs={tabs} variant="fullWidth" centered indicatorColor="primary" textColor="primary" />
       </div>
-      <Radio label="Select an option" options={options} value={selectedOption} onChange={handleOptionChange} RadioProps={{ color: 'primary' }} />
-      <OtpAuthPage {...otpAuthPageProps} />
-      <AuthPage {...authPageProps} />
-      <SsoAuthPage {...ssoAuthPageProps} />
-      <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
+      <div className="App">
+        <h1>Avatar Example</h1>
+        <AvatarComponent alt="John Doe" initials="JD" size="small" />
+        <AvatarComponent alt="Jane Doe" src="https://example.com/avatar.jpg" size="large" />
+        <AvatarComponent alt="No Avatar" size={80} />
+      </div>
+      <div className="App">
+        <h1>Radio example</h1>
+        <Radio label="Select an option" options={options} value={selectedOption} onChange={handleOptionChange} RadioProps={{ color: 'primary' }} />
+      </div>
+      <div className="App">
+        <h1>Logo Example</h1>
+        <Logo logoUrl="https://example.com/logo.png" altText="Company Logo" />
+      </div>
+      <div className="App">
+        <h1>Otp auth page example</h1>
+        <OtpAuthPage {...otpAuthPageProps} />
+      </div>
+      <div className="App">
+        <h1>Auth page example</h1>
+        <AuthPage {...authPageProps} />
+      </div>
+      <div className="App">
+        <h1>SSO auth page example</h1>
+        <SsoAuthPage {...ssoAuthPageProps} />
+      </div>
+      <div className="App">
+        <h1>Erro page example</h1>
+        <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
+      </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
     </div>
   );
