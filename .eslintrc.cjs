@@ -14,7 +14,6 @@ module.exports = {
     'prettier',
     'plugin:prettier/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:storybook/recommended'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -22,6 +21,7 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'react/react-in-jsx-scope': 'off',
+    "react/prop-types": "off",
     // Additional Liniting
     'prettier/prettier': [
       'error',
