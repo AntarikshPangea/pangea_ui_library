@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, PasswordInput, TextField } from 'pangea_ui_library';
+import { Button, Dropdown, OtpInput, PasswordInput, TextField } from 'pangea_ui_library';
 import TextArea from 'pangea_ui_library/components/TextArea';
 import SearchBar from 'pangea_ui_library/components/Search';
 
@@ -13,6 +13,8 @@ const App: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [otp, setOtp] = useState('');
+  const [otpError, setOtpError] = useState(false);
   const [flag, setFlag] = useState(true);
 
   const handleTextFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,6 +62,16 @@ const App: React.FC = () => {
     }
   };
 
+  const handleOtpChange = (value: string) => {
+    setOtp(value);
+    if (value.length !== 6) {
+      // Assuming OTP length is 6
+      setOtpError(true);
+    } else {
+      setOtpError(false);
+    }
+  };
+
   const toggleFlag = () => {
     setFlag((prevFlag) => !prevFlag);
   };
@@ -92,6 +104,14 @@ const App: React.FC = () => {
         helperText={passwordError ? 'Password is required' : ''}
         variant="outlined"
         fullWidth
+      />
+      <OtpInput
+        label="OTP"
+        length={6}
+        onChange={handleOtpChange}
+        error={otpError}
+        helperText={otpError ? 'Please enter a valid OTP' : ''}
+        disabled={!flag}
       />
       <Button variant="contained" color="primary" fullWidth onClick={handleButtonClick} disabled={!flag}>
         Click Me
