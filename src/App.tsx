@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Button, Dropdown, OtpInput, PasswordInput, TextField } from 'pangea_ui_library';
 import TextArea from 'pangea_ui_library/components/TextArea';
 import SearchBar from 'pangea_ui_library/components/Search';
+import OtpAuthPage, { IOtpAuthPageProps } from 'pangea_ui_library/pages/OtpAuthPage';
+import AuthPage, { IAuthPageProps } from 'pangea_ui_library/pages/AuthPage';
+import SsoAuthPage, { ISsoAuthPageProps } from 'pangea_ui_library/pages/SsoAuthPage';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -72,6 +75,45 @@ const App: React.FC = () => {
     }
   };
 
+  const otpAuthPageProps: IOtpAuthPageProps = {
+    fields: [{ label: 'Email', type: 'email' }],
+    logoUrl: 'https://via.placeholder.com/150',
+    onSendOtp: (email: string) => {
+      console.log(`OTP sent to ${email}`);
+      return true;
+    },
+    onVerifyOtp: (otp: string) => {
+      console.log(`OTP verified: ${otp}`);
+      return otp === '123456'; // Dummy verification logic
+    }
+  };
+
+  const handleAuthSubmit = (data: { [key: string]: string }): boolean => {
+    console.log(data);
+    // Implement your submission logic here
+    // Return true if submission is successful, false otherwise
+    return true;
+  };
+
+  const authPageProps: IAuthPageProps = {
+    mode: 'forgotPassword', // Change this to "signup" or "forgotPassword" as needed
+    logoUrl: 'https://via.placeholder.com/150',
+    onSubmit: handleAuthSubmit
+  };
+
+  const handleSsoAuthSubmit = (): string => {
+    console.log('hello');
+    // Implement your submission logic here
+    // Return true if submission is successful, false otherwise
+    return 'token';
+  };
+
+  const ssoAuthPageProps: ISsoAuthPageProps = {
+    buttonLabel: 'Login using Microsoft',
+    logoUrl: 'https://via.placeholder.com/150',
+    onLogin: handleSsoAuthSubmit
+  };
+
   const toggleFlag = () => {
     setFlag((prevFlag) => !prevFlag);
   };
@@ -116,6 +158,9 @@ const App: React.FC = () => {
       <Button variant="contained" color="primary" fullWidth onClick={handleButtonClick} disabled={!flag}>
         Click Me
       </Button>
+      <OtpAuthPage {...otpAuthPageProps} />
+      <AuthPage {...authPageProps} />
+      <SsoAuthPage {...ssoAuthPageProps} />
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
     </div>
   );

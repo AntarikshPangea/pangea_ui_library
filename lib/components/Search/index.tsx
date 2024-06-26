@@ -5,10 +5,10 @@ import SearchIcon from '@mui/icons-material/Search';
 
 interface ISearchBarProps extends Omit<TextFieldProps, 'onChange'> {
   onChange: (value: string) => void;
-  flag?: boolean;
+  disabled?: boolean;
 }
 
-const SearchBar: React.FC<ISearchBarProps> = ({ onChange, flag, ...props }) => {
+const SearchBar: React.FC<ISearchBarProps> = ({ onChange, disabled, ...props }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -16,7 +16,7 @@ const SearchBar: React.FC<ISearchBarProps> = ({ onChange, flag, ...props }) => {
   return (
     <TextField
       placeholder="Search..."
-      disabled={!flag}
+      disabled={!disabled}
       onChange={handleChange}
       InputProps={{
         startAdornment: (
