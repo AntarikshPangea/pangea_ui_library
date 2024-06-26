@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, OtpInput, PasswordInput, TextField } from 'pangea_ui_library';
+import { Button, Dropdown, OtpInput, PasswordInput, Radio, TextField } from 'pangea_ui_library';
 import TextArea from 'pangea_ui_library/components/TextArea';
 import SearchBar from 'pangea_ui_library/components/Search';
 import OtpAuthPage, { IOtpAuthPageProps } from 'pangea_ui_library/pages/OtpAuthPage';
 import AuthPage, { IAuthPageProps } from 'pangea_ui_library/pages/AuthPage';
 import SsoAuthPage, { ISsoAuthPageProps } from 'pangea_ui_library/pages/SsoAuthPage';
+import { RadioOption } from 'pangea_ui_library/components/Radio';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -19,6 +20,17 @@ const App: React.FC = () => {
   const [otp, setOtp] = useState('');
   const [otpError, setOtpError] = useState(false);
   const [flag, setFlag] = useState(true);
+  const [selectedOption, setSelectedOption] = useState<string>('option1');
+
+  const options: RadioOption[] = [
+    { label: 'Option 1', value: 'option1' },
+    { label: 'Option 2', value: 'option2' },
+    { label: 'Option 3', value: 'option3' }
+  ];
+
+  const handleOptionChange = (value: string) => {
+    setSelectedOption(value);
+  };
 
   const handleTextFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTextFieldValue(event.target.value);
@@ -158,6 +170,7 @@ const App: React.FC = () => {
       <Button variant="contained" color="primary" fullWidth onClick={handleButtonClick} disabled={!flag}>
         Click Me
       </Button>
+      <Radio label="Select an option" options={options} value={selectedOption} onChange={handleOptionChange} RadioProps={{ color: 'primary' }} />
       <OtpAuthPage {...otpAuthPageProps} />
       <AuthPage {...authPageProps} />
       <SsoAuthPage {...ssoAuthPageProps} />

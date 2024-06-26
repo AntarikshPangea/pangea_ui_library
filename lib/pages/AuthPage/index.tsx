@@ -1,11 +1,6 @@
 import { Button, TextField } from 'pangea_ui_library';
 import React, { useState } from 'react';
 
-// interface Field {
-//   label: string;
-//   type: string;
-// }
-
 export interface IAuthPageProps {
   mode: 'login' | 'signup' | 'forgotPassword';
   logoUrl: string;
