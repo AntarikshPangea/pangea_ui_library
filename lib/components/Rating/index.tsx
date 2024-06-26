@@ -7,12 +7,11 @@ export interface IRatingProps extends RatingProps {
   disabled?: boolean;
   onChange: (event: React.SyntheticEvent<Element, Event>, value: number | null) => void;
   readOnly?: boolean;
-  required?: boolean;
   label?: string;
   value: number | undefined;
 }
 
-const Rating: React.FC<IRatingProps> = ({ disabled, onChange, readOnly = false, required = false, label, value = 0 }) => {
+const Rating: React.FC<IRatingProps> = ({ disabled, onChange, readOnly = false, label, value = 0 }) => {
   return (
     <Box
       sx={{
