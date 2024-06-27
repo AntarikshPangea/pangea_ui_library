@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField } from 'pangea_ui_library';
+import { Button, Date, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField } from 'pangea_ui_library';
 import TextArea from 'pangea_ui_library/components/TextArea';
 import SearchBar from 'pangea_ui_library/components/Search';
 import OtpAuthPage, { IOtpAuthPageProps } from 'pangea_ui_library/pages/OtpAuthPage';
@@ -154,7 +154,7 @@ const App: React.FC = () => {
     <div>
       <div className="App">
         <h1>Textfield example</h1>
-        <TextField label="Example Label" value={textFieldValue} onChange={handleTextFieldChange} errormsg={textFieldError} disabled={flag} />
+        <TextField label="Example Label" value={textFieldValue} onChange={handleTextFieldChange} errormsg={textFieldError} disabled={true} />
       </div>
       <div className="App">
         <h1>Dropdown example</h1>
@@ -170,7 +170,7 @@ const App: React.FC = () => {
       </div>
       <div className="App">
         <h1>Textarea example</h1>
-        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} errormsg={textAreaError} disabled={flag} />
+        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} errormsg={textAreaError} disabled={true} />
       </div>
       <div className="App">
         <h1>Searchbar example</h1>
@@ -190,14 +190,7 @@ const App: React.FC = () => {
       </div>
       <div className="App">
         <h1>Otp example</h1>
-        <OtpInput
-          label="OTP"
-          length={6}
-          onChange={handleOtpChange}
-          error={otpError}
-          helperText={otpError ? 'Please enter a valid OTP' : ''}
-          disabled={!flag}
-        />
+        <OtpInput label="OTP" length={6} onChange={handleOtpChange} disabled={!flag} />
       </div>
       <div className="App">
         <h1>Button example</h1>
