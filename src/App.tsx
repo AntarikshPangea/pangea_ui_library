@@ -251,7 +251,7 @@ const App: React.FC = () => {
         <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
       </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
-      <Switch label="Flag" checked={flag} onChange={toggleFlag} color="primary" disabled={false} value={flag} />
+      <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
     </div>
   );
 };
