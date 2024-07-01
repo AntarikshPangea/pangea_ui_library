@@ -1,17 +1,24 @@
 // CustomSwitch.tsx
 import React from 'react';
-import { Switch as MuiSwitch, SwitchProps } from '@mui/material';
+import { Switch as MuiSwitch, SwitchProps, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Box from '@mui/material/Box';
 
 interface CustomSwitchProps extends Omit<SwitchProps, 'color'> {
-  color?: string;
+  switchBgColor?: string;
   label: string;
+  isLeftLabel?: boolean;
+  leftlabel?: string;
+  labelPlacement?: 'top' | 'bottom' | 'start' | 'end';
+  labelColor?: string;
+  labelSize?: 'small' | 'medium' | 'large';
+  labelWeight?: 'light' | 'regular' | 'medium' | 'bold';
 }
 
 const IOSSwitch = styled((props: CustomSwitchProps) => <MuiSwitch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />)(
-  ({ theme, color }) => ({
+  ({ theme, switchBgColor }) => ({
     width: 38,
     height: 22,
     padding: 0,
@@ -23,7 +30,7 @@ const IOSSwitch = styled((props: CustomSwitchProps) => <MuiSwitch focusVisibleCl
         transform: 'translateX(16px)',
         color: '#fff',
         '& + .MuiSwitch-track': {
-          backgroundColor: color || theme.palette.primary.main,
+          backgroundColor: switchBgColor || theme.palette.primary,
           opacity: 1,
           border: 0
         },
@@ -51,9 +58,16 @@ const IOSSwitch = styled((props: CustomSwitchProps) => <MuiSwitch focusVisibleCl
 
 const Switch: React.FC<CustomSwitchProps> = (props) => {
   return (
-    <FormGroup>
-      <FormControlLabel control={<IOSSwitch sx={{ m: 1 }} {...props} />} label={props.label} />
-    </FormGroup>
+    <Box>
+      <FormGroup sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5rem' }}>
+        {props.isLeftLabel && (
+          <Typography sx={{ color: props.labelColor || 'black', fontSize: props.labelSize || '1rem', fontWeight: props.labelWeight || 'medium' }}>
+            {props.leftlabel || ''}
+          </Typography>
+        )}
+        <FormControlLabel control={<IOSSwitch sx={{ m: 1 }} {...props} />} labelPlacement={props.labelPlacement} label={props.label} />
+      </FormGroup>
+    </Box>
   );
 };
 
