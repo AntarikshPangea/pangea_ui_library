@@ -9,6 +9,7 @@ import { RadioOption } from 'pangea_ui_library/components/Radio';
 import ErrorPage from 'pangea_ui_library/pages/ErrorPage';
 import TabsComponent from 'pangea_ui_library/components/Tabs';
 import AvatarComponent from 'pangea_ui_library/components/Avatar';
+import Switch from 'pangea_ui_library/components/Switch';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -233,6 +234,7 @@ const App: React.FC = () => {
         <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
       </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
+      <Switch label="Flag" checked={flag} onChange={toggleFlag} color="primary" disabled={false} value={flag} />
     </div>
   );
 };
