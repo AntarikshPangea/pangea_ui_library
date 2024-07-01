@@ -9,6 +9,7 @@ import { RadioOption } from 'pangea_ui_library/components/Radio';
 import ErrorPage from 'pangea_ui_library/pages/ErrorPage';
 import TabsComponent from 'pangea_ui_library/components/Tabs';
 import AvatarComponent from 'pangea_ui_library/components/Avatar';
+import Table from 'pangea_ui_library/components/Table';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -145,6 +146,18 @@ const App: React.FC = () => {
     { label: 'Tab 3', content: <div>Content for Tab 3</div> }
   ];
 
+  const columnDefs = [
+    { headerName: 'Make', field: 'make' },
+    { headerName: 'Model', field: 'model' },
+    { headerName: 'Price', field: 'price' }
+  ];
+
+  const rowData = [
+    { make: 'Toyota', model: 'Celica', price: 35000 },
+    { make: 'Ford', model: 'Mondeo', price: 32000 },
+    { make: 'Porsche', model: 'Boxster', price: 72000 }
+  ];
+
   const handleRefresh = () => {
     // Logic to refresh the page or reload data
     window.location.reload();
@@ -201,6 +214,10 @@ const App: React.FC = () => {
       <div className="App">
         <h1>Tabs Example</h1>
         <TabsComponent tabs={tabs} variant="fullWidth" centered indicatorColor="primary" textColor="primary" />
+      </div>
+      <div className="App">
+        <h1>Table example</h1>
+        <Table columnDefs={columnDefs} rowData={rowData} />
       </div>
       <div className="App">
         <h1>Avatar Example</h1>
